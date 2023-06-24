@@ -64,3 +64,9 @@ const saveReport = async (req, res) => {
 
 
 module.exports = { getQuestions, getCompare, saveReport };
+//for testing
+const questions = (req, res) => { 
+    res.send("api warning")
+}
+
+module.exports={getQuestions,getCompare,questions}

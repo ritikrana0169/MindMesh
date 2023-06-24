@@ -1,25 +1,43 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from "axios"
 import {
-    Box,
-    Button,
-    Center,
-    Icon,
-    Image,
-    Select,
-    Table,
-    TableContainer,
-    Tbody,
-    Td,
-    Th,
-    Thead,
-    Tr,
-  } from "@chakra-ui/react";
+  Box,
+  Button,
+  Center,
+  Icon,
+  Image,
+  Select,
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
+} from "@chakra-ui/react";
 import { Link } from 'react-router-dom';
 import { data } from './data';
 import { AiTwotoneEdit } from "react-icons/ai";
+import { EditModal } from './EditModal';
 export const AdminEditUsers = () => {
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    getData()
+  }, [])
+
+  const getData = async () => {
+    try {
+      const res = await axios.get("https://reqres.in/api/users")
+      console.log(res.data.data)
+      setData(res.data.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
-   <div style={{ height: "84vh", width: "85vw" }}>
+    <div style={{ height: "84vh", width: "85vw" }}>
       {/* <Heading textAlign='center'>All Products Data</Heading> */}
       {/* <br/> */}
       <Center>
@@ -39,7 +57,7 @@ export const AdminEditUsers = () => {
         <Table variant="simple" size="sm">
           <Thead>
             <Tr>
-            <Th>S.No.</Th>
+              <Th>S.No.</Th>
               <Th>Name</Th>
               <Th>Email</Th>
               <Th>Level</Th>
@@ -49,21 +67,25 @@ export const AdminEditUsers = () => {
           </Thead>
           <Tbody>
             {
-              data.map((el)=>(
+              data.map((el) => (
                 <Tr key={el.id}>
-                <Td>{el.id}.</Td>
-                  <Td>{el.Name}</Td>
-                  <Td>{el.Email}</Td>
-                  <Td>{el.Name}</Td>
-                  <Td>{el.Category}</Td>
-                  <Td>{el.Role}</Td>
+                  <Td>{el.id}.</Td>
+                  <Td>{el.first_name}</Td>
+                  <Td>{el.email}</Td>
+                  <Td>{el.last_name}</Td>
+                  <Td>XYZ</Td>
+                  <Td>XYZ</Td>
                   <Td>
-                  <Center>
-                      <Button
+                    <Center>
+                      {/* <Link to={`/admin/${el.id}`}> */}
+                      {/* <Button
                         colorScheme="green"
-                      >
-                        <AiTwotoneEdit />
-                      </Button>
+                      > */}
+                      <EditModal
+                        id={el.id}
+                      />
+                      {/* </Button> */}
+                      {/* </Link> */}
                     </Center>
                   </Td>
                 </Tr>
@@ -72,7 +94,7 @@ export const AdminEditUsers = () => {
           </Tbody>
         </Table>
       </TableContainer>
-      
+
     </div>
   )
 }
