@@ -6,11 +6,17 @@ app.use(express.json())
 app.use(cors())
 const { exerciseRouter } = require("./routes/exercise.routes")
 const { userRouter } = require("./routes/user.routes")
-const {connection} = require("./db");
+const { connection } = require("./db");
+const { auth } = require("./middlewares/Auth.middleware")
+// const { role } = require("../middlewares/role.middleware")
 require('dotenv').config()
 
-app.use("/exercise",exerciseRouter)
-app.use("/user",userRouter)
+
+app.use("/user", userRouter)
+
+app.use("/exercise",auth, exerciseRouter)
+
+
 
 
 app.listen(process.env.port, async () => {
