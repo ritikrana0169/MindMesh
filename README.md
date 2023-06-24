@@ -23,7 +23,7 @@ The objective of the mindmesh application project is to create a comprehensive a
 ➤ Can Fetch All Users Details<br>
 ➤ Can Fetch Single User Details<br>
 <br><br>
-USER PANNEL
+**USER PANNEL**
 <br>
 ➤ Login 
 ➤ Signup
