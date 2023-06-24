@@ -3,6 +3,7 @@ const cors = require('cors');
 const app = express()
 
 app.use(express.json())
+
 app.use(cors())
 const { exerciseRouter } = require("./routes/exercise.routes")
 const { userRouter } = require("./routes/user.routes")
