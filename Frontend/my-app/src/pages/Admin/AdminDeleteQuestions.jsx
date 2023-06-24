@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from "axios"
 import {
     Box,
     Button,
@@ -19,6 +20,31 @@ import { Link } from 'react-router-dom';
 import { MdDelete } from "react-icons/md";
 import { data } from './data';
 export const AdminDeleteUsers = () => {
+  const [data,setData] = useState([])
+
+  useEffect(()=>{
+    getData()
+  },[])
+
+  const getData= async()=>{
+      try {
+        const res = await axios.get("https://reqres.in/api/users")
+        console.log(res.data.data)
+        setData(res.data.data)
+      } catch (error) {
+        console.log(error)
+      }
+  }
+
+  const deleteAdmin= async(id)=>{
+    axios.delete(`https://reqres.in/api/users${id}`).then((res)=>{
+      alert("Deleted Successfully!")
+      getData()
+      console.log(res)
+    }).catch((err)=>{
+      alert(err)
+    })
+  }
   return (
    <div style={{ height: "84vh", width: "85vw" }}>
       {/* <Heading textAlign='center'>All Products Data</Heading> */}
@@ -50,17 +76,18 @@ export const AdminDeleteUsers = () => {
           </Thead>
           <Tbody>
             {
-                data.map((el)=>(
+                data?.map((el)=>(
                     <Tr key={el.id}>
                     <Td>{el.id}.</Td>
-                        <Td>{el.Name}</Td>
-                        <Td>{el.Email}</Td>
+                        <Td>{el.first_name}</Td>
+                        <Td>{el.email}</Td>
                         {/* <Td>1</Td>
                         <Td>Mern</Td>
                         <Td>User</Td> */}
                         <Td>
                         <Center>
                             <Button
+                            onClick={()=>{deleteAdmin(el.id)}}
                             colorScheme="red"
                             >
                             <MdDelete />
