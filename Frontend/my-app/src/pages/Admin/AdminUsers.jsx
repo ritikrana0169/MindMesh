@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from "axios"
 import {
     Box,
     Button,
@@ -16,6 +17,20 @@ import {
 import { Link } from 'react-router-dom';
 import { data } from './data';
 export const AdminUsers = () => {
+  const [data,setData] = useState([])
+
+  useEffect(()=>{
+    getData()
+  },[])
+
+  const getData= async()=>{
+      try {
+        const res = await axios.get("https://jsonplaceholder.typicode.com/users")
+        setData(res.data)
+      } catch (error) {
+        console.log(error)
+      }
+  }
     console.log(data)
   return (
    <div style={{ height: "84vh", width: "85vw" }}>
@@ -51,11 +66,11 @@ export const AdminUsers = () => {
                 data.map((el)=>(
                     <Tr key={1}>
                         <Td>{el.id}.</Td>
-                        <Td>{el.Name}</Td>
-                        <Td>{el.Email}</Td>
-                        <Td>{el.Level}</Td>
-                        <Td>{el.Category}</Td>
-                        <Td>{el.Role}</Td>
+                        <Td>{el.name}</Td>
+                        <Td>{el.email}</Td>
+                        <Td>{el.address.zipcode}</Td>
+                        <Td>{el.website}</Td>
+                        <Td>{el.company.name}</Td>
                         {/* <Link to={`/edit/${1}`}>
                         <button>Edit</button>
                         </Link> */}

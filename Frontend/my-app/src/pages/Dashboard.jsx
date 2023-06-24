@@ -1,6 +1,7 @@
 import { Box, Button, Text } from '@chakra-ui/react'
 import React from 'react'
 import { Link } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 
 
 
@@ -9,6 +10,7 @@ const Dashboard = () => {
     
   return (
     <div>
+      <Navbar />
         <Box >
             <Box textAlign={"left"} w={"70%"} h={"auto"} m={"15px"} borderRadius={"7px"} bgColor={"rgb(225,233,250)"} >
             <Text p={"10px"} fontSize='3xl' >You haven't started your preparation</Text>
