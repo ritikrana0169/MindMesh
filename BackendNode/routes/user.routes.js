@@ -1,7 +1,6 @@
 const express = require('express')
 const userRouter = express.Router()
-
-const { AllUsers, deleteuser, signUP, login, logout, getUsersbyID } = require("../controllers/user.controller")
+const { AllUsers, deleteuser, signUP, login, logout, getUsersbyID, updateUser } = require("../controllers/user.controller")
 const { auth } = require("../middlewares/Auth.middleware")
 const { role } = require("../middlewares/role.middleware")
 
@@ -18,6 +17,8 @@ userRouter.get("/AllUsers", AllUsers)
 userRouter.get("/AllUsers/:id", getUsersbyID)
 userRouter.delete("/deleteuser/:id", deleteuser)
 
+
+userRouter.patch("/updateUser/:id", updateUser)
 
 
 module.exports = {userRouter}
