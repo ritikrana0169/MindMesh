@@ -17,6 +17,7 @@ import {
   } from '@chakra-ui/react';
   import { useState } from 'react';
   import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import axios from 'axios';
   
   export default function Signup() {
     const [showPassword, setShowPassword] = useState(false);
@@ -30,7 +31,7 @@ import {
         const data = {
             name,email,password,track,level
         }
-        console.log(data)
+        axios.post(`http://localhost:7500/user/signUP`,(data)).then((res)=>console.log(res.data))
     }
   
     return (
