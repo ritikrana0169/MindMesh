@@ -40,16 +40,16 @@ const deleteuser = async (req, res) => {
     }
 }
 
-// const getUsersbyID = async (req,res) => {
-//     try{
-//      const admin = await userModel.findById(req.params.id)
-//      res.send(admin)
-//     }
-//     catch(err){
-//         res.status(400).json({err: err.message})
-//         console.log(err)
-//     }
-// }
+const getUsersbyID = async (req,res) => {
+    try{
+     const admin = await userModel.findById(req.params.id)
+     res.send(admin)
+    }
+    catch(err){
+        res.status(400).json({err: err.message})
+        console.log(err)
+    }
+}
 
 const signUP = async (req,res) => {
     const payload = req.body;
@@ -100,5 +100,5 @@ const login = async(req,res) =>{
 
 
 
-module.exports = { AllUsers, deleteuser, signUP, login,logout}
+module.exports = { AllUsers, deleteuser, signUP, login,logout , getUsersbyID}
 

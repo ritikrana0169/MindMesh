@@ -25,7 +25,7 @@ export const AdminUsers = () => {
 
   const getData= async()=>{
       try {
-        const res = await axios.get("https://jsonplaceholder.typicode.com/users")
+        const res = await axios.get("http://localhost:7500/user/AllUsers")
         setData(res.data)
       } catch (error) {
         console.log(error)
@@ -65,12 +65,12 @@ export const AdminUsers = () => {
             {
                 data.map((el)=>(
                     <Tr key={1}>
-                        <Td>{el.id}.</Td>
+                        <Td>{el._id}.</Td>
                         <Td>{el.name}</Td>
                         <Td>{el.email}</Td>
-                        <Td>{el.address.zipcode}</Td>
-                        <Td>{el.website}</Td>
-                        <Td>{el.company.name}</Td>
+                        <Td>{el.level}</Td>
+                        <Td>{el.track}</Td>
+                        <Td>{el.role}</Td>
                         {/* <Link to={`/edit/${1}`}>
                         <button>Edit</button>
                         </Link> */}
