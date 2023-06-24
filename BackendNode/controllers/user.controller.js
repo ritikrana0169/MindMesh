@@ -97,8 +97,19 @@ const login = async(req,res) =>{
     }
 }
 
+const updateUser = async (req, res) => { //admin
+    const ID = req.params.id
+    const Payload = req.body
+    try {
+        await userModel.findByIdAndUpdate({ _id: ID }, Payload)
+        res.status(201).send({ "msg": "User Updated SuccesFully", "ok": true })
+
+    } catch (error) {
+        res.status(401).send({ "msg": "Bad Request 404", "ok": false, "err": error.message })
+
+    }
+}
 
 
-
-module.exports = { AllUsers, deleteuser, signUP, login,logout}
+module.exports = { AllUsers, deleteuser, signUP, login, logout, updateUser }
 
