@@ -47,7 +47,7 @@ The objective of the mindmesh application project is to create a comprehensive a
 ＮＯＤＥ<br>
 ➤ Pranay Mishra <br>Contribution -> -------- <br> Github -> ---------<br><br>
 ➤ Abhishek <br>Contribution -> -------- <br> Github -> ---------<br><br>
-➤ Saloni Kumari <br>Contribution -> -------- <br> Github -> ---------<br><br>
+➤ Saloni Kumari <br>Contribution -> Backend <br> Github -> https://github.com/Saloni0282<br><br>
 ＪＡＶＡ<br>
 ➤ Ritik Rana <br>Contribution -> Customer Backend Rest Apis <br> Github -> https://github.com/ritikrana0169<br><br>
 
