@@ -19,8 +19,8 @@ app.use("/exercise",auth, exerciseRouter)
 
 
 
-
 app.listen(process.env.port, async () => {
+
 
     try {
         await connection;
