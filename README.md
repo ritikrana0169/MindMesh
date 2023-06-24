@@ -41,6 +41,6 @@ The objective of the mindmesh application project is to create a comprehensive a
 ➤ Progress Bar.<br><br>
 𝐀𝐛𝐨𝐮𝐭 𝐓𝐞𝐚𝐦 𝐌𝐞𝐦𝐛𝐞𝐫𝐬  <br><br>
 
-Ｒｅａｃｔ
-➤ Arnab Adhikary <br>Contribution <br>Admin Pannel Crud [Frontend] <br> Github -> https://github.com/Arnab-108
+Ｒｅａｃｔ<br>
+➤ Arnab Adhikary <br>Contribution <br>Admin Pannel Crud [Frontend] <br> Github -> https://github.com/Arnab-108<br><br>
 ➤ Sagar Deswal  <br> Contribution <br>User Pannel  [Frontend]       <br>   Github -> https://github.com/sagardeswal123
