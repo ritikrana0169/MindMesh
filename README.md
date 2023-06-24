@@ -25,14 +25,14 @@ ADMIN PANNEL
 <br><br>
 USER PANNEL
 <br>
-➤ Login 
-➤ Signup
-➤ Dashboard
-➤ Simulated Mock Interviews
-➤ Result 
+➤ Login <br>
+➤ Signup<br>
+➤ Dashboard<br>
+➤ Simulated Mock Interviews<br>
+➤ Result <br>
 <br>
 <br>
-SPECIAL FEATURES
-➤ The questions were created by AI.
-➤ Text To Speech out.
-➤ Users Can See Their Interview Result.
+SPECIAL FEATURES<br>
+➤ The questions were created by AI.<br>
+➤ Text To Speech out.<br>
+➤ Users Can See Their Interview Result.<br>
