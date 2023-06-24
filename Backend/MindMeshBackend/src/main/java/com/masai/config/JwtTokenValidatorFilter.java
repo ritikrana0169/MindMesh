@@ -36,7 +36,7 @@ public class JwtTokenValidatorFilter extends OncePerRequestFilter {
 				//extracting the word Bearer
 				jwt = jwt.substring(7);
 
-
+          
 				SecretKey key= Keys.hmacShaKeyFor(SecurityConstants.JWT_KEY.getBytes());
 
 				Claims claims= Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(jwt).getBody();

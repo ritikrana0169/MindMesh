@@ -9,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -58,15 +59,16 @@ return new ResponseEntity<>(cList,HttpStatus.OK);
 }
 	
 	
-	@PostMapping("admin/update/role/{customerId}")
+	@PostMapping("/admin/update/role/{customerId}")
 	public ResponseEntity<Customer> updateCustomerRoleHandler(@PathVariable Integer customerId,@RequestBody Customer cust) throws ApplicationException{
+		System.out.println("Inside update Role");
 		Customer custom=customerService.updateRole(customerId,cust);
 		return new ResponseEntity<>(custom,HttpStatus.CREATED);	
 		}
 	
 	
 	
-	@PostMapping("signup")
+	@PostMapping("/signup")
 	public ResponseEntity<Customer> signUpHandler(@RequestBody @Valid Customer customer){
 		customer.setPassword(passwordEncoder.encode(customer.getPassword()));
 		Customer custom=customerService.createCustomer(customer);

@@ -26,7 +26,7 @@ public class Customer {
 	private String  email;
 	@NotNull(message = "Password of customer can't be Null")
 	private String password;
-	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
+//	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	private String role="ROLE_USER";
 	@NotNull
 	private String track;

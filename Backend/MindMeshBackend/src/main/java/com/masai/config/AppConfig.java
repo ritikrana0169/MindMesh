@@ -49,15 +49,15 @@ public class AppConfig {
 	
 	.authorizeHttpRequests(auth ->{
 	auth.requestMatchers(HttpMethod.POST, "/signup").permitAll()
-	.requestMatchers(HttpMethod.GET,"/admin/customers").hasRole("ADMIN")
 	
+	.requestMatchers(HttpMethod.POST,"/admin/update/role/{customerId}").permitAll()	
 //	.requestMatchers(HttpMethod.GET, "/hello").hasRole("ADMIN")
 //	.requestMatchers(HttpMethod.GET, "/hello2").hasAnyRole("USER","ADMIN")
 //	.requestMatchers("/swagger-ui*/**","/v3/api-docs/**").permitAll()
 	.anyRequest().authenticated();
 	})
 	.csrf(csrf -> csrf.csrfTokenRequestHandler(requestHandler)
-			.ignoringRequestMatchers("/signup")
+			.ignoringRequestMatchers("/signup","/admin/update/role/{customerId}")
 			.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
 	.addFilterAfter(new JwtTokenGeneratorFilter(), BasicAuthenticationFilter.class)
 	.addFilterBefore(new JwtTokenValidatorFilter(),BasicAuthenticationFilter.class)

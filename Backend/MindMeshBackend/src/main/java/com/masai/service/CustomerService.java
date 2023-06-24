@@ -49,9 +49,9 @@ public class CustomerService {
 		if(customerr.isEmpty()) {
 			throw new ApplicationException("No Customer Found");
 		}
-		if(!cust.getRole().toUpperCase().equals("ADMIN") && !cust.getRole().toUpperCase().equals("USER")) {
-			throw new ApplicationException("Role isn't a Valid one");
-		}
+//		if(!cust.getRole().toUpperCase().equals("ADMIN") && !cust.getRole().toUpperCase().equals("USER")) {
+//			throw new ApplicationException("Role isn't a Valid one");
+//		}
 		customerr.get().setRole("ROLE_"+cust.getRole().toUpperCase());
 		customerRepository.save(customerr.get());
 		return customerr.get();
