@@ -1,6 +1,7 @@
 const express=require("express")
 const app=express()
 app.use(express.json())
+
 const { exerciseRouter } = require("./routes/exercise.routes")
 
 app.use("/exercise",exerciseRouter)
