@@ -14,6 +14,7 @@ import {
     Th,
     Thead,
     Tr,
+    useToast,
   } from "@chakra-ui/react";
 import { Link } from 'react-router-dom';
 // MdDelete
@@ -21,7 +22,7 @@ import { MdDelete } from "react-icons/md";
 import { data } from './data';
 export const AdminDeleteUsers = () => {
   const [data,setData] = useState([])
-
+  const toast = useToast();
   useEffect(()=>{
     getData()
   },[])
@@ -38,7 +39,12 @@ export const AdminDeleteUsers = () => {
 
   const deleteAdmin= async(id)=>{
     axios.delete(`http://localhost:7500/user/deleteuser/${id}`).then((res)=>{
-      alert("Deleted Successfully!")
+      toast({
+        title: `Admin Removed`,
+        status:"error",
+        duration: 1000,
+        isClosable: true,
+      });
       getData()
       console.log(res)
     }).catch((err)=>{

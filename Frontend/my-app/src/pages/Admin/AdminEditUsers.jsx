@@ -84,6 +84,7 @@ export const AdminEditUsers = () => {
                       > */}
                       <EditModal
                         id={el._id}
+                        getData={getData}
                       />
                       {/* </Button> */}
                       {/* </Link> */}

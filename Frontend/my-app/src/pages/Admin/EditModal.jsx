@@ -10,15 +10,17 @@ import {
     useDisclosure,
     Button,
     Input,
+    useToast,
   } from '@chakra-ui/react'
 import { AiTwotoneEdit } from 'react-icons/ai'
 import axios from 'axios'
 
-export const EditModal = ({id}) => {
+export const EditModal = ({id,getData}) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [data,setData] = useState("")
+    const toast = useToast();
     useEffect(()=>{
-        getData()
+        singleData()
     },[])
 
 
@@ -28,7 +30,7 @@ export const EditModal = ({id}) => {
             return {...prev , [name]:value}
         })
     }
-    const getData = async()=>{
+    const singleData = async()=>{
         axios.get(`http://localhost:7500/user/AllUsers/${id}`).then((res)=>{
             setData(res.data)
         })
@@ -38,11 +40,15 @@ export const EditModal = ({id}) => {
     }
 
     const handlePatch=()=>{
-        axios.patch(`https://reqres.in/api/users/${id}` , data)
+        axios.patch(`http://localhost:7500/user/updateUser/${id}` , data)
         .then((res)=>{
-            alert("Edited!")
+            toast({
+                title: `Edited Successfully!`,
+                status: "success",
+                duration: 1000,
+                isClosable: true,
+              });
             getData()
-            console.log(res)
         })
         .catch((err)=>{
             alert(err)
@@ -60,7 +66,7 @@ export const EditModal = ({id}) => {
                     <ModalHeader>Modal Title</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
-                        <Input type='text' name="first_name" value={data.role} onChange={handlechange} />
+                        <Input type='text' name="role" value={data.role} onChange={handlechange} />
                         <Button onClick={handlePatch} position={"relative"} top={"2vh"} colorScheme='blue' >Edit</Button>
                     </ModalBody>
 
