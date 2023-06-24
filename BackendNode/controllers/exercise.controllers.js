@@ -44,9 +44,9 @@ const getCompare = async (req, res) => {
 
 //this is to save progress
 const saveReport = async (req, res) => {
-    const {userName} = req.body;
+    const {userName,data} = req.body;
     try {
-      let report = new ReportModel({ userName});
+      let report = new ReportModel({userName,data});
       console.log(report)
       await report.save();
 
@@ -58,15 +58,43 @@ const saveReport = async (req, res) => {
         console.log(error)
       res.status(400).send("Couldn't save report!");
     }
-  };
+};
+
+const getProgressReport = async (req, res) => {
+    const {_id} = req.body;
+
+    try {
+      let report = await ReportModel.findById(_id);
+
+      let total=0;
+      let Max=500;
+
+      for (let ele of report.data){
+        if(ele=="verybad"){
+            total+=20
+        }else if(ele=="bad"){
+            total+=40
+        }else if(ele=="good"){
+            total+=60
+        }else if(ele=="better"){
+            total+=80
+        }else if(ele=="best"){
+            total+=100
+        }
+      }
+
+      let percent=(total/Max)*100
+
+      res.status(200).send({
+        report:percent
+      });
+    } catch (error) {
+        console.log(error)
+      res.status(400).send("Couldn't find user!");
+    }
+};
   
 
 
 
-module.exports = { getQuestions, getCompare, saveReport };
-//for testing
-const questions = (req, res) => { 
-    res.send("api warning")
-}
-
-module.exports={getQuestions,getCompare,questions}
+module.exports = { getQuestions, getCompare, saveReport ,getProgressReport};
