@@ -24,7 +24,7 @@ The objective of the Mindmesh application project is to create a comprehensive a
 ➤ Can Fetch All Users Details<br>
 ➤ Can Fetch Single User Details<br>
 <br><br>
-ＵＳＥＲ ＰＡＮＮＥＬ
+ＵＳＥＲ ＰＡＮＥＬ
 <br>
 <br>
 ➤ Login <br>
@@ -45,7 +45,7 @@ The objective of the Mindmesh application project is to create a comprehensive a
 ➤ Arnab Adhikary <br>Contribution -> Admin Pannel Crud [Frontend] <br> Github -> https://github.com/Arnab-108<br><br>
 ➤ Sagar Deswal  <br> Contribution ->User Pannel  [Frontend]       <br>   Github -> https://github.com/sagardeswal123<br><br>
 ＮＯＤＥ<br>
-➤ Pranay Mishra <br>Contribution -> Worked with OpenAI Api <br> Github -> THEPRANAYMISHRA <br><br>
+➤ Pranay Mishra <br>Contribution -> Worked with OpenAI Api <br> Github ->  https://github.com/THEPRANAYMISHRA <br><br>
 ➤ Abhishek <br>Contribution -> -------- <br> Github -> ---------<br><br>
 ➤ Saloni Kumari <br>Contribution -> Backend <br> Github -> https://github.com/Saloni0282<br><br>
 ＪＡＶＡ<br>
