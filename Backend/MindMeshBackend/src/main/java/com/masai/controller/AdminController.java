@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,21 +19,36 @@ import com.masai.model.Customer;
 import com.masai.service.CustomerService;
 
 import jakarta.validation.Valid;
-@CrossOrigin
+
 @RestController
 public class AdminController {
 
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+
 	
 	@Autowired
 	private CustomerService customerService;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	
 	//get all customers
 	@GetMapping("/admin/customers")
 	public ResponseEntity<List<Customer>> getAllCustomerHandler(){
 		List<Customer> cList=customerService.getAllCustomers();
 		return new ResponseEntity<>(cList,HttpStatus.OK);
 	}
+	
+	
+@GetMapping("/customer/{id}")
+public ResponseEntity<Customer> getSingleCustomerHandler(@PathVariable Integer id){
+
+Customer cList=customerService.getSingleCustomers(id);
+return new ResponseEntity<>(cList,HttpStatus.OK);
+}
+	
+	
+	
 	
 	
 	@DeleteMapping("admin/deleteUser/{customerId}")

@@ -1,3 +1,5 @@
+
+
 package com.masai.config;
 
 import java.io.IOException;
@@ -20,8 +22,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-
-
 public class JwtTokenGeneratorFilter extends OncePerRequestFilter {
 
 	@Override
@@ -41,7 +41,7 @@ public class JwtTokenGeneratorFilter extends OncePerRequestFilter {
 
 
             String jwt = Jwts.builder()
-            		.setIssuer(authentication.getName())
+            		.setIssuer("Ram")
             		.setSubject("JWT Token")
                     .claim("username", authentication.getName())
                     .claim("authorities", populateAuthorities(authentication.getAuthorities()))
@@ -77,3 +77,4 @@ public class JwtTokenGeneratorFilter extends OncePerRequestFilter {
 
 
 }
+

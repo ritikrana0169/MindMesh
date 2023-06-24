@@ -1,6 +1,5 @@
 package com.masai.config;
 
-
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -28,36 +27,42 @@ public class AppConfig {
 	public SecurityFilterChain springSecurityConfiguration(HttpSecurity http) throws Exception {
 		CsrfTokenRequestAttributeHandler requestHandler = new CsrfTokenRequestAttributeHandler();
 		http.sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-	.cors
-	(cors->{
+	.cors(cors -> {
+
 		cors.configurationSource(new CorsConfigurationSource() {
-			
+
 			@Override
 			public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
-				CorsConfiguration cfg=new CorsConfiguration();
-				cfg.setAllowCredentials(true);
+				CorsConfiguration cfg = new CorsConfiguration();
+
 				cfg.setAllowedOriginPatterns(Collections.singletonList("*"));
+				cfg.setAllowedMethods(Collections.singletonList("*"));
+				cfg.setAllowCredentials(true);
 				cfg.setAllowedHeaders(Collections.singletonList("*"));
 				cfg.setExposedHeaders(Arrays.asList("Authorization"));
-				cfg.setAllowedMethods(Collections.singletonList("*"));
 				return cfg;
 			}
 		});
+
 	})
+
 	
 	.authorizeHttpRequests(auth ->{
 	auth.requestMatchers(HttpMethod.POST, "/signup").permitAll()
-	.requestMatchers(HttpMethod.GET, "/admin/customers").permitAll()
+	.requestMatchers(HttpMethod.GET,"/admin/customers").hasRole("ADMIN")
+	
+//	.requestMatchers(HttpMethod.GET, "/hello").hasRole("ADMIN")
+//	.requestMatchers(HttpMethod.GET, "/hello2").hasAnyRole("USER","ADMIN")
 //	.requestMatchers("/swagger-ui*/**","/v3/api-docs/**").permitAll()
 	.anyRequest().authenticated();
 	})
-//	.csrf(csrf-> csrf.disable())
 	.csrf(csrf -> csrf.csrfTokenRequestHandler(requestHandler)
 			.ignoringRequestMatchers("/signup")
 			.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
-        	.addFilterBefore(new JwtTokenValidatorFilter(),BasicAuthenticationFilter.class)
-	        .addFilterAfter(new JwtTokenGeneratorFilter(), BasicAuthenticationFilter.class)
-            .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
+	.addFilterAfter(new JwtTokenGeneratorFilter(), BasicAuthenticationFilter.class)
+	.addFilterBefore(new JwtTokenValidatorFilter(),BasicAuthenticationFilter.class)
+
+	.addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
 	.formLogin(Customizer.withDefaults())
 	.httpBasic(Customizer.withDefaults());
 	return http.build();

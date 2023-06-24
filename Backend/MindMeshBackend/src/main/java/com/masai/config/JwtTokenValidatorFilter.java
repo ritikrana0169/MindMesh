@@ -1,4 +1,5 @@
 
+
 package com.masai.config;
 
 import java.io.IOException;
@@ -26,31 +27,28 @@ public class JwtTokenValidatorFilter extends OncePerRequestFilter {
 
 
 		String jwt= request.getHeader(SecurityConstants.JWT_HEADER);
-//		System.err.println(jwt);
-System.out.println("inside before ");
+
+
 		if(jwt != null) {
 
 			try {
 
 				//extracting the word Bearer
-				System.out.println("one");
 				jwt = jwt.substring(7);
-				System.err.println(jwt);
 
 
 				SecretKey key= Keys.hmacShaKeyFor(SecurityConstants.JWT_KEY.getBytes());
-//				String base64UrlEncodedKey = Base64.getUrlEncoder().withoutPadding().encodeToString(key.getEncoded());
-				System.out.println("two");
+
 				Claims claims= Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(jwt).getBody();
-				System.out.println("three");
+
 				String username= String.valueOf(claims.get("username"));
-				System.out.println("four");
+
 				String authorities= (String)claims.get("authorities");
-				System.out.println("five");
+
 				Authentication auth = new UsernamePasswordAuthenticationToken(username, null, AuthorityUtils.commaSeparatedStringToAuthorityList(authorities));
-				System.out.println("six");
+
 				SecurityContextHolder.getContext().setAuthentication(auth);
-				System.out.println("seven");
+
 			} catch (Exception e) {
 				throw new BadCredentialsException("Invalid Token received..");
 			}

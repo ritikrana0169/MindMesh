@@ -72,6 +72,18 @@ public class CustomerService {
 	public Customer getCustomerDetailsByEmail(String email)throws CustomerException {
 		
 		return customerRepository.findByEmail(email).orElseThrow(() -> new CustomerException("Customer Not found with Email: "+email));
+	}
+
+
+
+
+	public Customer getSingleCustomers(Integer id) {
+	Optional<Customer> cust=customerRepository.findById(id);
+	if(cust.isEmpty())
+		throw new CustomerException("Customer Not Found");
+	else
+		return cust.get();
+	
 	}}
 	
 	
