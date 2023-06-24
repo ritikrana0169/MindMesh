@@ -1,7 +1,6 @@
 const express = require('express')
 const userRouter = express.Router()
-
-const { AllUsers, deleteuser, signUP, login, logout } = require("../controllers/user.controller")
+const { AllUsers, deleteuser, signUP, login, logout, getUsersbyID, updateUser } = require("../controllers/user.controller")
 const { auth } = require("../middlewares/Auth.middleware")
 const { role } = require("../middlewares/role.middleware")
 
@@ -13,11 +12,13 @@ userRouter.get("/", (req,res) => {
 
 userRouter.post("/signUP", signUP)
 userRouter.post("/login", login)
-userRouter.get("/logout", auth, logout)
-userRouter.get("/AllUsers", auth, AllUsers)
-// userRouter.get("/:id", userdata)
-userRouter.delete("/deleteuser/:id", auth, role(["Admin"]), deleteuser)
+userRouter.get("/logout", logout)
+userRouter.get("/AllUsers", AllUsers)
+userRouter.get("/AllUsers/:id", getUsersbyID)
+userRouter.delete("/deleteuser/:id", deleteuser)
 
+
+userRouter.patch("/updateUser/:id", updateUser)
 
 
 module.exports = {userRouter}

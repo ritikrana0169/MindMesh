@@ -31,7 +31,7 @@ const AdminDashboard = () => {
             />
             </NavLink>
             <Heading as="h1">Admin Dashboard</Heading>
-            <NavLink to="/">
+            <NavLink to="/dashboard">
             <Button
                 backgroundColor="white"
                 size="lg"

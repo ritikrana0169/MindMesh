@@ -14,6 +14,7 @@ import {
     Th,
     Thead,
     Tr,
+    useToast,
   } from "@chakra-ui/react";
 import { Link } from 'react-router-dom';
 // MdDelete
@@ -21,24 +22,29 @@ import { MdDelete } from "react-icons/md";
 import { data } from './data';
 export const AdminDeleteUsers = () => {
   const [data,setData] = useState([])
-
+  const toast = useToast();
   useEffect(()=>{
     getData()
   },[])
 
   const getData= async()=>{
       try {
-        const res = await axios.get("https://reqres.in/api/users")
-        console.log(res.data.data)
-        setData(res.data.data)
+        const res = await axios.get("http://localhost:7500/user/AllUsers")
+        console.log(res.data)
+        setData(res.data)
       } catch (error) {
         console.log(error)
       }
   }
 
   const deleteAdmin= async(id)=>{
-    axios.delete(`https://reqres.in/api/users${id}`).then((res)=>{
-      alert("Deleted Successfully!")
+    axios.delete(`http://localhost:7500/user/deleteuser/${id}`).then((res)=>{
+      toast({
+        title: `Admin Removed`,
+        status:"error",
+        duration: 1000,
+        isClosable: true,
+      });
       getData()
       console.log(res)
     }).catch((err)=>{
@@ -77,9 +83,9 @@ export const AdminDeleteUsers = () => {
           <Tbody>
             {
                 data?.map((el)=>(
-                    <Tr key={el.id}>
-                    <Td>{el.id}.</Td>
-                        <Td>{el.first_name}</Td>
+                    <Tr key={el._id}>
+                    <Td>{el._id}.</Td>
+                        <Td>{el.name}</Td>
                         <Td>{el.email}</Td>
                         {/* <Td>1</Td>
                         <Td>Mern</Td>
@@ -87,7 +93,7 @@ export const AdminDeleteUsers = () => {
                         <Td>
                         <Center>
                             <Button
-                            onClick={()=>{deleteAdmin(el.id)}}
+                            onClick={()=>{deleteAdmin(el._id)}}
                             colorScheme="red"
                             >
                             <MdDelete />

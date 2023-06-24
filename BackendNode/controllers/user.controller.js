@@ -40,16 +40,16 @@ const deleteuser = async (req, res) => {
     }
 }
 
-// const getUsersbyID = async (req,res) => {
-//     try{
-//      const admin = await userModel.findById(req.params.id)
-//      res.send(admin)
-//     }
-//     catch(err){
-//         res.status(400).json({err: err.message})
-//         console.log(err)
-//     }
-// }
+const getUsersbyID = async (req,res) => {
+    try{
+     const admin = await userModel.findById(req.params.id)
+     res.send(admin)
+    }
+    catch(err){
+        res.status(400).json({err: err.message})
+        console.log(err)
+    }
+}
 
 const signUP = async (req,res) => {
     const payload = req.body;
@@ -97,8 +97,20 @@ const login = async(req,res) =>{
     }
 }
 
+const updateUser = async (req, res) => { //admin
+    const ID = req.params.id
+    const Payload = req.body
+    try {
+        await userModel.findByIdAndUpdate({ _id: ID }, Payload)
+        res.status(201).send({ "msg": "User Updated SuccesFully", "ok": true })
+
+    } catch (error) {
+        res.status(401).send({ "msg": "Bad Request 404", "ok": false, "err": error.message })
+
+    }
+}
 
 
+module.exports = { AllUsers, deleteuser, signUP, login,logout ,getUsersbyID ,updateUser}
 
-module.exports = { AllUsers, deleteuser, signUP, login,logout}
 
