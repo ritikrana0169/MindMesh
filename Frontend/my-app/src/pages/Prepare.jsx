@@ -1,6 +1,8 @@
 import { Box, Button, Text, Textarea } from '@chakra-ui/react'
 import {BsRecordCircle} from "react-icons/bs"
 import React, { useState } from 'react'
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const Prepare = () => {
 
@@ -16,6 +18,7 @@ const Prepare = () => {
 
   return (
     <Box>
+        <Navbar/>
         <Box border={"1px solid gray"} borderRadius={"10px"} w={"80%"} m={"20px auto"} p={"20px"} >
             <Box>
                 <Text w={"96%"} fontSize='3xl' margin={"auto"} p={"20px"} textAlign={"left"}>Question : {ques}?</Text>
@@ -32,6 +35,7 @@ const Prepare = () => {
             <Button marginTop={"20px"} leftIcon={<BsRecordCircle/>} colorScheme='green' variant='outline' >Record</Button>            
         </Box>
         <Button onClick={handleClick} marginTop={"30px"} colorScheme='blue' variant='outline' >Submit</Button>
+        <Footer />
     </Box>
   )
 }

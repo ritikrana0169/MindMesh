@@ -1,74 +1,135 @@
+import {
+    Flex,
+    Box,
+    FormControl,
+    FormLabel,
+    Input,
+    InputGroup,
+    HStack,
+    InputRightElement,
+    Stack,
+    Button,
+    Heading,
+    Text,
+    useColorModeValue,
+    Link,
+    Select,
+  } from '@chakra-ui/react';
+  import { useState } from 'react';
+  import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+  
+  export default function Signup() {
+    const [showPassword, setShowPassword] = useState(false);
+    const [name,setName] = useState("");
+    const [email,setEmail]  = useState("");
+    const [password,setPassword] = useState("");
+    const [track,setTrack] = useState("");
+    const [level,setLevel] = useState("");
 
-
-
-export default function Signup() {
+    const handleClick = ()=>{
+        const data = {
+            name,email,password,track,level
+        }
+        console.log(data)
+    }
+  
     return (
-      <>
-        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-          <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-            <img
-              className="mx-auto h-10 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-              alt="Your Company"
-            />
-            <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-              Sign in to your account
-            </h2>
-          </div>
-  
-          <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form className="space-y-6" action="#" method="POST">
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-                  Email address
-                </label>
-                <div className="mt-2">
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    required
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                </div>
-              </div>
-  
-              <div>
-                <div className="flex items-center justify-between">
-                  <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-                    Password
-                  </label>
-                  <div className="text-sm">
-                    <a href="/signup" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                      Forgot password?
-                    </a>
-                  </div>
-                </div>
-                <div className="mt-2">
-                  <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    autoComplete="current-password"
-                    required
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                </div>
-              </div>
-  
-              <div>
-                <button
-                  type="submit"
-                  className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                  Sign in
-                </button>
-              </div>
-            </form>
-
-          </div>
-        </div>
-      </>
-    )
+      <Flex
+        minH={'100vh'}
+        align={'center'}
+        justify={'center'}
+        bg={useColorModeValue('gray.50', 'gray.800')}>
+        <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
+          <Stack align={'center'}>
+            <Heading fontSize={'4xl'} textAlign={'center'}>
+              Sign up
+            </Heading>
+            <Text fontSize={'lg'} color={'gray.600'}>
+              to enjoy all of our cool features ✌️
+            </Text>
+          </Stack>
+          <Box
+            rounded={'lg'}
+            bg={useColorModeValue('white', 'gray.700')}
+            boxShadow={'lg'}
+            p={8}>
+            <Stack spacing={4}>
+              <HStack>
+                <Box>
+                  <FormControl id="firstName" isRequired>
+                    <FormLabel>First Name</FormLabel>
+                    <Input value={name} onChange={(e)=>setName(e.target.value)} type="text" />
+                  </FormControl>
+                </Box>
+                <Box>
+                  <FormControl id="lastName">
+                    <FormLabel>Last Name</FormLabel>
+                    <Input type="text" />
+                  </FormControl>
+                </Box>
+              </HStack>
+              <FormControl id="email" isRequired>
+                <FormLabel>Email address</FormLabel>
+                <Input value={email} onChange={(e)=>setEmail(e.target.value)} type="email" />
+              </FormControl>
+              <FormControl id="password" isRequired>
+                <FormLabel>Password</FormLabel>
+                <InputGroup>
+                  <Input value={password} onChange={(e)=>setPassword(e.target.value)} type={showPassword ? 'text' : 'password'} />
+                  <InputRightElement h={'full'}>
+                    <Button
+                      variant={'ghost'}
+                      onClick={() =>
+                        setShowPassword((showPassword) => !showPassword)
+                      }>
+                      {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                    </Button>
+                  </InputRightElement>
+                </InputGroup>
+              </FormControl>
+              <HStack>
+              <Box w={"49%"} >
+                <FormControl id="track" isRequired>
+                    <FormLabel>Track</FormLabel>
+                    <Select onChange={(e)=>setTrack(e.target.value)} placeholder='Select Option'>
+                        <option value='mern'>MERN</option>
+                        <option value='java'>JAVA</option>
+                        <option value='node'>NODE</option>
+                    </Select>
+                </FormControl>
+                </Box>
+                <Box w={"49%"}>
+                <FormControl id="track" isRequired>
+                    <FormLabel>Level</FormLabel>
+                    <Select onChange={(e)=>setLevel(e.target.value)} placeholder='Select Option'>
+                        <option value='1'>Begineer</option>
+                        <option value='2'>Intermediate</option>
+                        <option value='3'>Advance</option>
+                    </Select>
+                </FormControl>
+                </Box>
+                </HStack>
+              <Stack spacing={10} pt={2}>
+                <Button
+                  onClick={handleClick}
+                  loadingText="Submitting"
+                  size="lg"
+                  bg={'blue.400'}
+                  color={'white'}
+                  _hover={{
+                    bg: 'blue.500',
+                  }}>
+                  Sign up
+                </Button>
+              </Stack>
+              <Stack pt={6}>
+                <Text align={'center'}>
+                  Already a user? <Link to="/" color={'blue.400'}>Login</Link>
+                </Text>
+              </Stack>
+            </Stack>
+          </Box>
+        </Stack>
+      </Flex>
+    );
   }
