@@ -41,6 +41,14 @@ The objective of the mindmesh application project is to create a comprehensive a
 ➤ Progress Bar.<br><br>
 𝐀𝐛𝐨𝐮𝐭 𝐓𝐞𝐚𝐦 𝐌𝐞𝐦𝐛𝐞𝐫𝐬  <br><br>
 
-Ｒｅａｃｔ<br>
+ＭＥＲＮ<br>
 ➤ Arnab Adhikary <br>Contribution -> Admin Pannel Crud [Frontend] <br> Github -> https://github.com/Arnab-108<br><br>
-➤ Sagar Deswal  <br> Contribution ->User Pannel  [Frontend]       <br>   Github -> https://github.com/sagardeswal123
+➤ Sagar Deswal  <br> Contribution ->User Pannel  [Frontend]       <br>   Github -> https://github.com/sagardeswal123<br><br>
+ＮＯＤＥ<br>
+➤ Pranay Mishra <br>Contribution -> -------- <br> Github -> ---------<br><br>
+➤ Abhishek <br>Contribution -> -------- <br> Github -> ---------<br><br>
+➤ Saloni Kumari <br>Contribution -> Backend <br> Github -> https://github.com/Saloni0282<br><br>
+ＪＡＶＡ<br>
+➤ Ritik Rana <br>Contribution -> Customer Backend Rest Apis <br> Github -> https://github.com/ritikrana0169<br><br>
+
+🆃🅷🅰🅽🅺 🆈🅾🆄

@@ -7,12 +7,14 @@ import Footer from '../components/Footer';
 
 
 
+
 const Dashboard = () => {
     
   return (
     <div>
         <Navbar/>
         <Box h={"70vh"}>
+
             <Box textAlign={"left"} w={"70%"} h={"auto"} m={"15px"} borderRadius={"7px"} bgColor={"rgb(225,233,250)"} >
             <Text p={"10px"} fontSize='3xl' >You haven't started your preparation</Text>
             <Text p={"10px 10px 0px 10px"}>You'll notice a significant improvement in your understanding as you begin to prepare </Text>
