@@ -11,10 +11,11 @@ const userSchema = mongoose.Schema({
     },
     track:{
         type: String,
-        
+       
     },
     level:{
         type: Number
+
     },
     password: {
         type:String,
@@ -24,8 +25,8 @@ const userSchema = mongoose.Schema({
         type: Number,
         require: true
     },
-    role:String,
-    verify:Boolean
+    role: { type: String, enum: ["User", "Admin"], default: "User" }
+  
     
 })
 
