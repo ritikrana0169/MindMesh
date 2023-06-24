@@ -28,9 +28,9 @@ export const AdminEditUsers = () => {
 
   const getData = async () => {
     try {
-      const res = await axios.get("https://reqres.in/api/users")
-      console.log(res.data.data)
-      setData(res.data.data)
+      const res = await axios.get("http://localhost:7500/user/AllUsers")
+      console.log(res.data)
+      setData(res.data)
     } catch (error) {
       console.log(error)
     }
@@ -67,14 +67,14 @@ export const AdminEditUsers = () => {
           </Thead>
           <Tbody>
             {
-              data.map((el) => (
-                <Tr key={el.id}>
-                  <Td>{el.id}.</Td>
-                  <Td>{el.first_name}</Td>
+              data?.map((el) => (
+                <Tr key={el._id}>
+                  <Td>{el._id}.</Td>
+                  <Td>{el.name}</Td>
                   <Td>{el.email}</Td>
-                  <Td>{el.last_name}</Td>
-                  <Td>XYZ</Td>
-                  <Td>XYZ</Td>
+                  <Td>{el.level}</Td>
+                  <Td>{el.track}</Td>
+                  <Td>{el.role}</Td>
                   <Td>
                     <Center>
                       {/* <Link to={`/admin/${el.id}`}> */}
@@ -82,7 +82,7 @@ export const AdminEditUsers = () => {
                         colorScheme="green"
                       > */}
                       <EditModal
-                        id={el.id}
+                        id={el._id}
                       />
                       {/* </Button> */}
                       {/* </Link> */}

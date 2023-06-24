@@ -29,8 +29,8 @@ export const EditModal = ({id}) => {
         })
     }
     const getData = async()=>{
-        axios.get(`https://reqres.in/api/users/${id}`).then((res)=>{
-            setData(res.data.data)
+        axios.get(`http://localhost:7500/user/AllUsers/${id}`).then((res)=>{
+            setData(res.data)
         })
         .catch((err)=>{
             alert(err)
@@ -60,7 +60,7 @@ export const EditModal = ({id}) => {
                     <ModalHeader>Modal Title</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
-                        <Input type='text' name="first_name" value={data.first_name} onChange={handlechange} />
+                        <Input type='text' name="first_name" value={data.role} onChange={handlechange} />
                         <Button onClick={handlePatch} position={"relative"} top={"2vh"} colorScheme='blue' >Edit</Button>
                     </ModalBody>
 
