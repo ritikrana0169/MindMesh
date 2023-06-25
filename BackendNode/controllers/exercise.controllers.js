@@ -31,7 +31,7 @@ const getCompare = async (req, res) => {
     try {
         const response = await openai.createCompletion({
             model: "text-davinci-003",
-            prompt: `This is the question ${question} and this is my answer for it ${answer} please check and tell me only out of these given categories (verybad,bad,good,better,best) which category suits this answer?`,
+            prompt: `This is the question ${question} and this is my answer for it ${answer} please check and tell me only out of these given categories (verybad,bad,good,better,best) which category suits this answer and don't give me any other explanation?`,
             max_tokens: 100
         })
         res.status(200).json({
@@ -45,21 +45,29 @@ const getCompare = async (req, res) => {
 
 //this is to save progress
 const saveReport = async (req, res) => {
-    const {email,data} = req.body;
+    const { email, data } = req.body;
+  
     try {
-      let report = new ReportModel({email,data});
-      console.log(report)
-      await report.save();
+      const isReportPresent = await ReportModel.findOne({ email });
 
-      res.status(200).send({
+      if (isReportPresent) {
+        await ReportModel.findOneAndUpdate({ email }, {email,data });
+        return res.status(200).send({ msg: "Report card is updated!" });
+      }
+  
+      const report = new ReportModel({ email, data });
+      await report.save();
+  
+      return res.status(200).send({
         success: true,
-        msg: "Report saved successfully!"
+        msg: "Report saved successfully!",
       });
     } catch (error) {
-        console.log(error)
+      console.log(error);
       res.status(400).send("Couldn't save report!");
     }
-};
+  };
+  
 
 const getProgressReport = async (req, res) => {
     const {email} = req.body;
