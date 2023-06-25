@@ -2,6 +2,7 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import logo from "../Logo/logo.png";
+import axios from 'axios';
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', current: true },
@@ -10,6 +11,10 @@ const navigation = [
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
+}
+
+const handleClick=()=>{
+  axios.get(`http://localhost:7500/user/logout`).then((res)=>console.log(res.data)).catch((err)=>console.log(err))
 }
 
 export default function Navbar() {
@@ -112,6 +117,7 @@ export default function Navbar() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
+                            onClick={handleClick}
                             href="/"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
