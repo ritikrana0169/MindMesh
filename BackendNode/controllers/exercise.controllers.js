@@ -12,7 +12,7 @@ const getQuestions = async (req, res) => {
     try {
         const response = await openai.createCompletion({
             model: "text-davinci-003",
-            prompt: `give me 5 interview question of ${track} of ${level} level.`,
+            prompt: `give me 5 technical interview question of ${track} of ${level} level.`,
             max_tokens: 100
         })
         res.status(200).json({
