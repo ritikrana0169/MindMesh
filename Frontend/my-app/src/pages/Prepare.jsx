@@ -66,7 +66,7 @@ const Prepare = () => {
 
   useEffect(() => {
     if (i >= 8) {
-      axios.post(`http://localhost:7500/exercise/save-report`,{userName:localStorage.getItem("email"),data:ans}).then((res)=>console.log(res.data))
+      axios.post(`http://localhost:7500/exercise/save-report`,{email:localStorage.getItem("email"),data:ans}).then((res)=>console.log(res.data))
       alert('Preparation done');
       localStorage.setItem("answer",ans);
       navigate('/dashboard');

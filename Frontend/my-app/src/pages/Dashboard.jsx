@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import axios from 'axios';
 
 
 const Dashboard = () => {
@@ -16,6 +17,7 @@ const Dashboard = () => {
   const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
   const [currentQuote, setCurrentQuote] = useState(quotes[currentQuoteIndex].title);
   const [isQuoteVisible, setIsQuoteVisible] = useState(false);
+  const [emaildata, setEmaildata] = useState(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -33,8 +35,13 @@ const Dashboard = () => {
     setIsQuoteVisible(true);
   }, [currentQuoteIndex]);
 
-  const answer = localStorage.getItem('answer');
   const username = localStorage.getItem('name');
+
+  useEffect(()=>{
+    axios.post(`http://localhost:7500/exercise/get-report`,{email:localStorage.getItem("email")}).then((res)=>{setEmaildata(res.data.report)
+    console.log(res.data)  
+  }).catch((err)=>console.log(err))
+  },[])
     
   return (
     <div>
@@ -52,7 +59,7 @@ const Dashboard = () => {
         <HStack>
         <Box h={"70vh"} w={"70%"}>
             <Box textAlign={"left"} h={"auto"} m={"15px"} borderRadius={"7px"} bgColor={"rgb(225,233,250)"} >
-            {answer ?<Text p={"10px"} fontSize='3xl' >Hi {username.toUpperCase()}!, Resume your journey</Text> : <Text p={"10px"} fontSize='3xl' >Hi {username.toUpperCase()}!,You haven't started your preparation</Text>}
+            {/* {answer ?<Text p={"10px"} fontSize='3xl' >Hi {username.toUpperCase()}!, Resume your journey</Text> : <Text p={"10px"} fontSize='3xl' >Hi {username.toUpperCase()}!,You haven't started your preparation</Text>} */}
             <Text p={"10px 10px 0px 10px"}>You'll notice a significant improvement in your understanding as you begin to prepare </Text>
             <Text padding={"0px 10px 10px 10px "}>using Mindmesh...</Text>
             <Button m={"10px"} marginBottom={"100px"} colorScheme='blue' variant='outline'>
@@ -64,7 +71,7 @@ const Dashboard = () => {
             </Box>
               <Box borderRadius={"7px"} mt={"-140px"} h={"280px"} w={"25%"} bgColor={"black"}>
                 <Text color={"rgb(151, 170, 213)"} p={"10px"} fontSize='3xl' >Your Last Score</Text>
-                <Text color={"rgb(177, 190, 218)"} p={"10px 10px 0px 10px"} fontSize='8xl'>30/100</Text>
+                <Text color={"rgb(177, 190, 218)"} p={"10px 10px 0px 10px"} fontSize='8xl'>{emaildata}/100</Text>
                 {/* <Text color={"rgb(180, 191, 213)"} textAlign={"right"} pr={"10px"} fontSize='3xl'>Out of 100%</Text> */}
               </Box> 
         </HStack>
