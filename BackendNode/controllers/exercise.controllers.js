@@ -30,7 +30,7 @@ const getCompare = async (req, res) => {
     try {
         const response = await openai.createCompletion({
             model: "text-davinci-003",
-            prompt: `This is the question ${question} and this is my answer for it ${answer} please evaluate as you are my teacher tell me only out of these three category(verybad,bad,good,better,best) where does my answer may stand?`,
+            prompt: `This is the question ${question} and this is my answer for it ${answer} please check and tell me only out of these given categories (verybad,bad,good,better,best) which category suits this answer?`,
             max_tokens: 100
         })
         res.status(200).json({
