@@ -1,5 +1,6 @@
-import { Box, Button, Text, Textarea } from '@chakra-ui/react';
+import { Box, Button, HStack, Text, Textarea } from '@chakra-ui/react';
 import { BsRecordCircle } from 'react-icons/bs';
+import {AiFillSound} from 'react-icons/ai';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
@@ -21,8 +22,8 @@ const Prepare = () => {
 
   const handleClick = () => {
 
-    if (data.trim().split(/\s+/).length < 10) {
-        alert('Please enter at least 10 words.');
+    if (data.trim().split(/\s+/).length < 5) {
+        alert('Please enter at least 5 words.');
         return;
       }
 
@@ -48,9 +49,10 @@ const Prepare = () => {
 
   useEffect(() => {
     axios
-      .post('http://localhost:7500/exercise/getquestions', {
-        track: 'MERN',
-        level: 'beginner',
+      .post('http://localhost:7500/exercise/getquestions',{},{
+        headers : {
+          Authorization : `Bearer ${localStorage.getItem('token')}`
+        }
       })
       .then((res) => {
         setQuestions(res.data.data);
@@ -58,27 +60,32 @@ const Prepare = () => {
         console.log(res.data.data);
       })
       .catch((error) => {
-        console.error(error);
+        alert(error);
       });
   }, []);
 
   useEffect(() => {
     if (i >= 7) {
+      axios.post(`http://localhost:7500/exercise/save-report`,{userName:localStorage.getItem("email"),data:ans}).then((res)=>console.log(res.data))
       alert('Preparation done');
-      navigate('/dashboard');
+      // navigate('/dashboard');
     }
   }, [i, navigate]);
 
-  console.log(ans)
+  console.log(ans);
+  console.log(localStorage.getItem('token'))
 
   return (
     <Box>
       <Navbar />
       <Box border="1px solid gray" borderRadius="10px" w="80%" m="20px auto" p="20px">
         <Box>
+          <HStack>
           <Text w="96%" fontSize="3xl" margin="auto" p="20px" textAlign="left">
             Question {ques}
           </Text>
+          <Button leftIcon={<AiFillSound />} colorScheme="green" variant="outline" >Speak</Button>
+          </HStack>
           <Textarea
             onChange={handleChange}
             value={data}

@@ -12,12 +12,12 @@ import {
     Heading,
     Text,
     useColorModeValue,
-    Link,
     Select,
   } from '@chakra-ui/react';
   import { useState } from 'react';
   import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import axios from 'axios';
+import {NavLink} from "react-router-dom";
   
   export default function Signup() {
     const [showPassword, setShowPassword] = useState(false);
@@ -103,7 +103,7 @@ import axios from 'axios';
                 <FormControl id="track" isRequired>
                     <FormLabel>Level</FormLabel>
                     <Select onChange={(e)=>setLevel(e.target.value)} placeholder='Select Option'>
-                        <option value='1'>Begineer</option>
+                        <option value='1'>Beginner</option>
                         <option value='2'>Intermediate</option>
                         <option value='3'>Advance</option>
                     </Select>
@@ -125,7 +125,7 @@ import axios from 'axios';
               </Stack>
               <Stack pt={6}>
                 <Text align={'center'}>
-                  Already a user? <Link to="/" color={'blue.400'}>Login</Link>
+                  Already a user? <NavLink to="/" style={{color:"blue"}}>Login</NavLink>
                 </Text>
               </Stack>
             </Stack>
