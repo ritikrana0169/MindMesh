@@ -15,7 +15,7 @@ require('dotenv').config()
 
 app.use("/user", userRouter)
 
-app.use("/exercise", exerciseRouter)
+app.use("/exercise",exerciseRouter)
 
 
 
