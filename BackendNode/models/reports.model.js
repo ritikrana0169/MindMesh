@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const reportSchema = new mongoose.Schema({
-  email: String,
+  email:{type:String,required:true},
   createdAt: { type: Date, default: Date.now },
   data: []
 });
