@@ -15,11 +15,12 @@ const getQuestions = async (req, res) => {
             prompt: `give me 5 technical interview question of ${track} of ${level} level.`,
             max_tokens: 100
         })
-        res.status(200).json({
+        res.status(200).send({
             success: true,
             data: response.data.choices[0].text.split("\n"),
         })
     } catch (error) {
+        console.log(error)
         res.status(400).send("error")
     }
 }
@@ -44,9 +45,9 @@ const getCompare = async (req, res) => {
 
 //this is to save progress
 const saveReport = async (req, res) => {
-    const {userName,data} = req.body;
+    const {email,data} = req.body;
     try {
-      let report = new ReportModel({userName,data});
+      let report = new ReportModel({email,data});
       console.log(report)
       await report.save();
 
@@ -61,24 +62,24 @@ const saveReport = async (req, res) => {
 };
 
 const getProgressReport = async (req, res) => {
-    const {_id} = req.body;
+    const {email} = req.body;
 
     try {
-      let report = await ReportModel.findById(_id);
+      let report = await ReportModel.findOne({email});
 
       let total=0;
       let Max=500;
 
       for (let ele of report.data){
-        if(ele=="verybad"){
+        if(ele.includes("verybad")){
             total+=20
-        }else if(ele=="bad"){
+        }else if(ele.includes("bad")){
             total+=40
-        }else if(ele=="good"){
+        }else if(ele.includes("good")){
             total+=60
-        }else if(ele=="better"){
+        }else if(ele.includes("better")){
             total+=80
-        }else if(ele=="best"){
+        }else if(ele.includes("best")){
             total+=100
         }
       }
