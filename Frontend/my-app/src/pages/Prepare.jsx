@@ -60,15 +60,16 @@ const Prepare = () => {
         console.log(res.data.data);
       })
       .catch((error) => {
-        alert(error);
+        alert("something went wrong, Please refresh");
       });
   }, []);
 
   useEffect(() => {
-    if (i >= 7) {
+    if (i >= 8) {
       axios.post(`http://localhost:7500/exercise/save-report`,{userName:localStorage.getItem("email"),data:ans}).then((res)=>console.log(res.data))
       alert('Preparation done');
-      // navigate('/dashboard');
+      localStorage.setItem("answer",ans);
+      navigate('/dashboard');
     }
   }, [i, navigate]);
 
