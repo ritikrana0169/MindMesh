@@ -31,7 +31,7 @@ import {NavLink} from "react-router-dom";
         const data = {
             name,email,password,track,level
         }
-        axios.post(`http://localhost:7500/user/signUP`,(data)).then((res)=>console.log(res.data))
+        axios.post(`http://localhost:7500/user/signUP`,(data)).then((res)=>console.log(res.data)).catch((err)=>console.log(err))
     }
   
     return (
