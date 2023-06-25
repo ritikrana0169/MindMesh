@@ -17,7 +17,7 @@ const getQuestions = async (req, res) => {
         })
         res.status(200).json({
             success: true,
-            data: response.data.choices[0].text.split("\n")
+            data: response.data.choices[0].text.split("\n"),
         })
     } catch (error) {
         res.status(400).send("error")

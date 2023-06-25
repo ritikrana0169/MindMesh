@@ -15,6 +15,9 @@ const auth = async (req, res, next) => {
         if (!decoded) return res.status(401).send({ msg: "Invalid token" });
         req.body.UserId = decoded.UserId;
         req.body.role = decoded.role;
+        // req.body.username = decoded.username;
+        // req.body.level = decoded.level;
+        // req.body.track = decoded.track;
         next();
     } catch (error) {
         res.status(401).send({ msg: error.message });
