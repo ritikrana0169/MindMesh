@@ -46,7 +46,7 @@ The objective of the Mindmesh application project is to create a comprehensive a
 ➤ Sagar Deswal  <br> Contribution ->User Pannel  [Frontend]       <br>   Github -> https://github.com/sagardeswal123<br><br>
 ＮＯＤＥ<br>
 ➤ Pranay Mishra <br>Contribution -> Worked with OpenAI Api <br> Github ->  https://github.com/THEPRANAYMISHRA <br><br>
-➤ Abhishek <br>Contribution -> Backend <br> Github -> ---------<br><br>
+➤ Abhishek <br>Contribution -> Backend <br> Github -> https://github.com/Abhishekshivam77 <br><br>
 ➤ Saloni Kumari <br>Contribution -> Backend <br> Github -> https://github.com/Saloni0282<br><br>
 ＪＡＶＡ<br>
 ➤ Ritik Rana <br>Contribution -> Customer Backend Rest Apis <br> Github -> https://github.com/ritikrana0169<br><br>
